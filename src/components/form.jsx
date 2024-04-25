@@ -1,31 +1,5 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-
-export function App() {
-  const [taxId, setTaxId] = useState('');
-  const [businessName, setBusinessName] = useState('');
-  const [requestAmount, setRequestAmount] = useState('');
-  const [response, setResponse] = useState(null);
-  const [error, setError] = useState(null);
-
-  const handleSubmit = async (e) => {
-    
-    e.preventDefault();
-    try {
-      const response = await axios.post('http://localhost:5000/loan/', {
-        tax_id: taxId,
-        business_name: businessName,
-        amount: requestAmount
-      });
-      setResponse(response.data); 
-      setError(null); 
-    } catch (error) {
-      setError('Error sending data'); 
-      setResponse(null);
-    }
-  };
-
-  return (
+function FormComponent(taxId, businessName, requestAmount, handleSubmit, response, error){
+  return(
     <div>
       <form className="max-w-sm mx-auto" onSubmit={handleSubmit}>
         <div className="mb-5">
@@ -50,11 +24,12 @@ export function App() {
       )}
 
       {error && (
-        <div className="mt-5 text-white">
+        // <div className="mt-5 text-white">
           <p>Error: {error}</p>
         </div>
       )}
     </div>
-  );
+  )
 }
 
+export default FormComponent
