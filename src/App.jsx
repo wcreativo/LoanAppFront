@@ -12,7 +12,7 @@ export function App() {
     
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/loan/', {
+      const response = await axios.post('https://6heqmtw8dg.execute-api.us-east-2.amazonaws.com/loan/', {
         tax_id: taxId,
         business_name: businessName,
         amount: requestAmount
